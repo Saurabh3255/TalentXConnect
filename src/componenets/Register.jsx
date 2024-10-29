@@ -103,7 +103,7 @@ const Register = () => {
             </div>
           </div>
 
-          {/* Username */}
+          {/* Username
           <div className="mb-4">
             <label
               htmlFor="username"
@@ -120,7 +120,7 @@ const Register = () => {
               value={user.username}
               onChange={handling}
             />
-          </div>
+          </div> */}
 
           {/* Email */}
           <div className="mb-4">

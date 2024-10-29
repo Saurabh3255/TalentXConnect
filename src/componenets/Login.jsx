@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux";
-import Register from "./Register";
-import { loginUser } from "../redux-toolkit/authSlices";
+import {useLogin} from "../hooks/useLogin";
+
 
 
 const Login = ({ onLogin }) => {
@@ -14,7 +12,7 @@ const Login = ({ onLogin }) => {
     });
 
     const navigate = useNavigate();
-    const dispatch = useDispatch(); // Initialize the dispatch function
+    const dispatch = useDispatch();                                                                       // Initialize the dispatch function
 
     function handleChange(e) {
         let name = e.target.name;
@@ -24,33 +22,33 @@ const Login = ({ onLogin }) => {
             ...user, [name]: value,
         });
     }
+      useLogin();
+    // const login = async (e) => {
+    //     e.preventDefault(); 
 
-    const login = async (e) => {
-        e.preventDefault(); 
+    //     const { email, password } = user; 
 
-        const { email, password } = user; 
+    //     try {
+    //         const actionResult = await dispatch(loginUser({ email, password })); // Dispatch the loginUser action
+    //         if (loginUser.fulfilled.match(actionResult)) {
+    //             console.log(actionResult,"payload")
+    //             const { accessToken } = actionResult.payload;  
+    //             console.log("token",accessToken)      // Get token from payload
 
-        try {
-            const actionResult = await dispatch(loginUser({ email, password })); // Dispatch the loginUser action
-            if (loginUser.fulfilled.match(actionResult)) {
-                console.log(actionResult,"payload")
-                const { accessToken } = actionResult.payload;  
-                console.log("token",accessToken)      // Get token from payload
+    //             // Store token in local storage
+    //             localStorage.setItem("token", accessToken); // Store token in local storage
 
-                // Store token in local storage
-                localStorage.setItem("token", accessToken); // Store token in local storage
-
-                onLogin(); // Notify parent that login is successful
-                navigate("/"); // Navigate to the homepage after successful login
-            } else {
-                // Handle the error case
-                alert(actionResult.error.message || "Invalid credentials. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error during login:", error);
-            alert("An error occurred while logging in. Please try again.");
-        }
-    };
+    //             onLogin(); // Notify parent that login is successful
+    //             navigate("/"); // Navigate to the homepage after successful login
+    //         } else {
+    //             // Handle the error case
+    //             alert(actionResult.error.message || "Invalid credentials. Please try again.");
+    //         }
+    //     } catch (error) {
+    //         console.error("Error during login:", error);
+    //         alert("An error occurred while logging in. Please try again.");
+    //     }
+    // };
 
     const onRegister = (e) => {
         e.preventDefault();
