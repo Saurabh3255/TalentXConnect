@@ -1,7 +1,10 @@
 import {  useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import {useLogin} from "../hooks/useLogin";
+import useLogin from "../hooks/useLogin";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+
 
 
 
@@ -22,33 +25,33 @@ const Login = ({ onLogin }) => {
             ...user, [name]: value,
         });
     }
-      useLogin();
-    // const login = async (e) => {
-    //     e.preventDefault(); 
+      // useLogin();
+    const login = async (e) => {
+        e.preventDefault(); 
 
-    //     const { email, password } = user; 
+        const { email, password } = user; 
 
-    //     try {
-    //         const actionResult = await dispatch(loginUser({ email, password })); // Dispatch the loginUser action
-    //         if (loginUser.fulfilled.match(actionResult)) {
-    //             console.log(actionResult,"payload")
-    //             const { accessToken } = actionResult.payload;  
-    //             console.log("token",accessToken)      // Get token from payload
+        try {
+            const actionResult = await dispatch(loginUser({ email, password })); // Dispatch the loginUser action
+            if (loginUser.fulfilled.match(actionResult)) {
+                console.log(actionResult,"payload")
+                const { accessToken } = actionResult.payload;  
+                console.log("token",accessToken)      // Get token from payload
 
-    //             // Store token in local storage
-    //             localStorage.setItem("token", accessToken); // Store token in local storage
+                // Store token in local storage
+                localStorage.setItem("token", accessToken); // Store token in local storage
 
-    //             onLogin(); // Notify parent that login is successful
-    //             navigate("/"); // Navigate to the homepage after successful login
-    //         } else {
-    //             // Handle the error case
-    //             alert(actionResult.error.message || "Invalid credentials. Please try again.");
-    //         }
-    //     } catch (error) {
-    //         console.error("Error during login:", error);
-    //         alert("An error occurred while logging in. Please try again.");
-    //     }
-    // };
+                onLogin(); // Notify parent that login is successful
+                navigate("/"); // Navigate to the homepage after successful login
+            } else {
+                // Handle the error case
+                alert(actionResult.error.message || "Invalid credentials. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("An error occurred while logging in. Please try again.");
+        }
+    };
 
     const onRegister = (e) => {
         e.preventDefault();
@@ -66,7 +69,7 @@ const Login = ({ onLogin }) => {
         className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-80 rounded-lg shadow-lg p- w-96"
         onSubmit={login}
       >
-        <div className="text-center text-2xl font-bold mb-6">Login Form</div>
+        {/* <div className="text-center text-2xl font-bold mb-6"></div> */}
 
         {/* Username Field */}
         <div className="flex items-center mb-4 pb-2">

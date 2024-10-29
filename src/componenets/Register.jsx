@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { RegisterUser } from "../redux-toolkit/authSlices";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
-    username: "",
     email: "",
     password: "",
   });
+  const [successMsg, setSuccessMsg] = useState('');
 
   const handling = (e) => {
     let name = e.target.name;
@@ -21,47 +23,40 @@ const Register = () => {
   };
 
   const navigate = useNavigate();
-
+  const dispatch =useDispatch();
  
   const handleSubmit = async (e) => {
     e.preventDefault(); 
 
-    const { firstName,lastName,username ,email, password } = user; 
+    const { firstName, lastName, email, password } = user; 
 
     try {
-        const actionResult = await dispatch(loginUser({ firstName,lastName,username,email, password })); // Dispatch the loginUser action
-        if (loginUser.fulfilled.match(actionResult)) {
-            console.log(actionResult,"payload")
-            const { accessToken } = actionResult.payload;  
-            console.log("token",accessToken)      // Get token from payload
-
-            // Store token in local storage
-            localStorage.setItem("token", accessToken); // Store token in local storage
-
-            onLogin(); // Notify parent that login is successful
-            navigate("/"); // Navigate to the homepage after successful login
+        const actionResult = await dispatch(RegisterUser({ firstName, lastName, email, password })); // Dispatch the RegisterUser action
+        if (RegisterUser.fulfilled.match(actionResult)) {
+            console.log(actionResult, "payload");
+            setSuccessMsg("Registration successful!"); // Set success message
+            // Navigate to the login page after successful registration
+            navigate("/login"); // Change this to the actual login route you want to navigate to
         } else {
             // Handle the error case
-            alert(actionResult.error.message || "Invalid credentials. Please try again.");
+            alert(actionResult.error.message || "Registration failed. Please try again.");
         }
     } catch (error) {
-        console.error("Error during login:", error);
-        alert("An error occurred while logging in. Please try again.");
+        console.error("Error during registration:", error);
+        alert("An error occurred while registering. Please try again.");
     }
-};
-
-
+}
   return (
-    <div className="relative w-full h-[700px] flex items-center justify-center">
+    <div className="relative w-full h-[600px] flex items-center justify-center">
       <img
-        src="https://www.synechron.com/sites/default/files/2024-08/Policy%20Governance%20and%20AI_Insights-Page%20banner-01.webp"
+        src="https://www.synechron.com/sites/default/files/2024-01/compressed-hp-nexus-banner.webp_11.webp"
         className="w-full h-full object-cover"
         alt="Banner"
       />
 
       <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-90 rounded-lg shadow-lg p-12 w-[600]">
         <h2 className="text-center text-2xl font-semibold mb-6">
-          Registration Form
+          Register With Synechron
         </h2>
 
         <form onSubmit={handleSubmit}>
