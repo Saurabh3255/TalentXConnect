@@ -27,7 +27,7 @@ function SideBar() {
           {[
             { icon: <AiFillDashboard />, label: "Dashboard", path: "/" },
             { icon: <CgProfile />, label: "Profile", path: "/profile" },
-            { icon: <FaBriefcase />, label: "Applied Job", path: "/appliedjob" },
+            { icon: <FaBriefcase />, label: "Applied Job", path: "/appliedjob    " },
             { icon: <ImEnter />, label: "Interview", path: "/interview" },
             { icon: <TbBrandGoogleAnalytics />, label: "Analytics", path: "/analytics" },
           ].map((item, index) => (
