@@ -1,6 +1,6 @@
 import React from 'react'
 import { VscBell } from "react-icons/vsc";
-import Button from '../utils/Button';
+import Button from '../../utils/Button';
 
 function NavNotice() {
   return (

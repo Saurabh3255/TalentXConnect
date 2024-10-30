@@ -1,12 +1,9 @@
 import {  useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import useLogin from "../hooks/useLogin";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-
-
-
+import { loginUser } from "../redux-toolkit/authSlices";
 
 const Login = ({ onLogin }) => {
     const [user, setUser] = useState({

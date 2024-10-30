@@ -13,7 +13,7 @@ const Register = () => {
   const [successMsg, setSuccessMsg] = useState('');
 
   const handling = (e) => {
-    let name = e.target.name;
+    let name =e.target.name;
     let value = e.target.value;
 
     setUser({
@@ -25,7 +25,7 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch =useDispatch();
  
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { 
     e.preventDefault(); 
 
     const { firstName, lastName, email, password } = user; 

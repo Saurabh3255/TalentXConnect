@@ -1,9 +1,10 @@
-import PageTitle from "./PageTitle"
+
+import Dashboard from "./Dashboard"
 
 function Body() {
   return (
    <main className="p-5">
-        <PageTitle page={"Dashboard"}/>
+      <Dashboard />
    </main>
   )
 }

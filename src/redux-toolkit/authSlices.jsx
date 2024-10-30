@@ -29,7 +29,7 @@ export const RegisterUser = createAsyncThunk(
   async ({ firstName, lastName,email,password }, { rejectWithValue }) => {  // Add rejectWithValue to handle errors
     try {
       const response = await axios.post(
-        " http://localhost:8000/v1/api/auth/candidate/register",
+        " http://localhost:8000/v1/api/auth/candidate/v2/register",
         {firstName, lastName,email, password },
         {
           headers: {

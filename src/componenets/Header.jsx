@@ -1,8 +1,8 @@
-import Calender from "./Calender"
-import NavAppliedJob from "./NavAppliedJob"
-import NavNotice from "./NavNotice"
-import Profile from "./Profile"
-import SearchBar from "./SearchBar"
+import Calender from "./Navbar/Calender"
+import NavAppliedJob from "./Navbar/NavAppliedJob"
+import NavNotice from "./Navbar/NavNotice"
+import Profile from "./Navbar/Profile"
+import SearchBar from "./Navbar/SearchBar"
 
 function Header() {
  
