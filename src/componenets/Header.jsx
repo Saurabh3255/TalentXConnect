@@ -8,7 +8,7 @@ function Header() {
  
 
   return (
-    <div className='flex w-full h-28 bg-white-400 shadow-lg'>
+    <div className='flex w-full h-28 bg-white-400 shadow-md '>
       {/* <div className='size-20 mt-4' ><img width={"200px"} src="https://i1.sndcdn.com/avatars-dKzg1TMFu6cGyGp1-swOrsg-t200x200.jpg"></img>
       </div> */}
       {/**{logo}*/}
